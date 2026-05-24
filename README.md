@@ -1,4 +1,4 @@
-# Research Methods - Groep/Group NN
+# Research Methods - Group 3
 
 | Name     | First Name | Class group | Github user name                        |
 | :------- | :--------- | :---------- | :-------------------------------------- |
