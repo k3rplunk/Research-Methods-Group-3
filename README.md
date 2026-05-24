@@ -2,10 +2,10 @@
 
 | Name     | First Name | Class group | Github user name                        |
 | :------- | :--------- | :---------- | :-------------------------------------- |
-| SURNAME1 | FirstName1 | TIN-2A1     | [UserName](https://github.com/UserName) |
-| SURNAME2 | FirstName2 | TIN-2A1     | [UserName](https://github.com/UserName) |
-| SURNAME3 | FirstName3 | TIN-2A1     | [UserName](https://github.com/UserName) |
-| SURNAME4 | FirstName4 | TIN-2A1     | [UserName](https://github.com/UserName) |
+| CAMPOS   | Jaime      | PBA-TIN     | [UserName](https://github.com/UserName)|
+| CARMONA  | Blanca     | PBA-TIN     | [UserName](https://github.com/UserName) |
+| DE TENA  | Angel      | PBA-TIN     | [UserName](https://github.com/UserName) |
+| VILLALBA | Anabel      | PBA-TIN    | [k3rplunk](https://github.com/k3rplunk) |
 
 ## TODOs
 
