@@ -21,21 +21,13 @@
 % TODO: English text? Comment or remove the lines above and uncomment the lines
 % below
 
- \studyprogramme{Professional bachelor in applied informatics}
- \course{Research Methods, INT-IT/2B}
- \assignmenttype{Group assignment}
- \academicyear{2025-2026}
- \title{Written preparation of research proposals}
+\studyprogramme{Professional bachelor in applied informatics}
+\course{Research Methods, INT-IT/2B}
+\assignmenttype{Group assignment}
+\academicyear{2025-2026}
+\title{A comparative study of Zero-Knowledge Proofs and Traditional ID Uploads to secure Age Verification in Social Media}
 
 % TODO: Replace student names and email addresses
-\author{Jaime Campos}
-\email{jaime.camposrodriguez@student.hogent.be}
-
-\author{Blanca Carmona}
-\email{blanca.carmonaegea@student.hogent.be}
-
-\author{Angel de Tena}
-\email{angel.detenarodriguez@student.hogent.be}
 
 \author{Anabel Villalba}
 \email{anabel.villalbapascual@student.hogent.be}
@@ -58,65 +50,270 @@
 % TODO: choose some appropriate keywords for your research proposals
 \keywords{Data Breaches, Age Verification, Cybersecurity, GDPR, Data Privacy}
 
-\begin{document}
 
-% TODO: Replace the dummy text below with the actual contents of your research
-% proposal. **ALSO REPLACE THE HEADING TITLES BY APPROPRIATE ONES!** The
-% current headings are just placeholders.
-\begin{abstract}
-  Wij presenteren het éérste onderzoek naar radiofrequente interferentie (RFI) op de toekomstige locatie van de laagfrequente Square Kilometre Array (SKA), het Murchison Radio-astronomie Observatorium (MRO), dat de RFI zowel in de tijd als ruimtelijk oplost.  Het onderzoek wordt uitgevoerd in een frequentiebereik van 1 MHz binnen de FM-band, ontworpen om de dichtstbijzijnde en sterkste FM-zenders van de MRO (gevestigd in Geraldton, op ongeveer 300 km afstand) te omvatten.  Gedurende ongeveer drie dagen, met gebruikmaking van de tweede iteratie van de Engineering Development Array in een ``all-sky imaging mode'', hebben we een reeks RFI-signalen gevonden.  We kunnen de signalen categoriseren in: signalen die rechtstreeks van de zenders worden ontvangen, vanaf hun horizonlocaties; reflecties van vliegtuigen (die ongeveer 13\% van de waarnemingsduur in beslag nemen); reflecties van objecten in een baan om de aarde; en reflecties van meteoor-ionisatiesporen.  In totaal analyseren we 33.994 beelden met een tijdresolutie van 7,92 s in beide polarisaties en een hoekresolutie van ongeveer 3,5$^{\circ}$, waarbij ongeveer veertigduizend RFI-gebeurtenissen worden gedetecteerd.  Deze gedetailleerde uitsplitsing van RFI in de MRO-omgeving zal toekomstige gedetailleerde analyses mogelijk maken van de waarschijnlijke gevolgen van RFI voor belangrijke wetenschap bij lage radiofrequenties met de SKA.
-\end{abstract}
+\begin{document}   
+    \begin{abstract}
+        
+       As the European Union intensifies its push for mandatory age verification on social media platforms to protect minors, a critical privacy dilemma has emerged. Traditional verification methods rely heavily on user ID uploads, forcing platforms to collect and centralize vast amounts of sensitive personal information. This practice transforms corporate databases into high-value targets for cybercriminals, significantly increasing the risk of catastrophic data breaches. To address this vulnerability, this bachelor's project investigates Zero-Knowledge Proofs (ZKPs) as a secure, privacy-preserving alternative. The proposal outlines a comparative analysis evaluating the implementation of ZKPs against standard document-based verification methods. By analyzing both approaches through the lenses of cryptographic security, GDPR compliance, and technical feasibility, this research aims to determine whether ZKPs can effectively mitigate data leak risks while satisfying stringent EU regulatory demands. Ultimately, this study will provide a technical framework for social media platforms to verify user age without compromising fundamental data privacy.
+    \end{abstract}
+    
+    
+    
+    \tableofcontents
+    
+    
+    
+    \section{Introduction}%
+    
+    \label{sec:introduction}
+    
+    As the European Union intensifies its efforts to protect minors online, regulations such as the Digital Services Act (DSA) are pushing for mandatory age verification across social media platforms by the end of 2026 \autocite{LewisSilkin2026, EUCommission2025}. While restricting underage access is a regulatory priority, the current technological approach creates a severe privacy dilemma. Traditional verification methods, such as document uploads and facial biometrics, force platforms and third-party vendors to collect and centralize massive amounts of sensitive personal data \autocite{Wodo2025, Alajaji2025}.
+    
+    
+    
+    This practice directly contradicts the data minimization principles of the General Data Protection Regulation (GDPR) and transforms corporate databases into high-value targets for cybercriminals \autocite{Newmark2026}. Recent incidents, such as the breach of 70,000 government-issued IDs from Discord users, illustrate the catastrophic risks of relying on centralized identity storage \autocite{Alajaji2025, EFF2025ZKP}.
+    
+    
+    
+    To address this critical vulnerability, this bachelor's project investigates ZKPs as a privacy-preserving alternative. The core of this research is guided by the following main research question: How does implementing Zero-Knowledge Proofs for age verification compare to traditional ID uploads when mitigating the risk of major data breaches for social media platforms?
+    
+    
+    
+    To systematically answer this question, the research is divided into two sets of sub-questions. The first set focuses on the problem domain to establish the exact vulnerabilities of the current standard:
+    
+    \begin{itemize} 
+        
+        \item What types of personal data are collected and potentially exposed when social media platforms use ID uploads for age verification? 
+        
+        \item To what extent do current EU age verification requirements conflict with the GDPR when platforms rely on ID-based verification methods? 
+        
+        \item What are the weaknesses of centralized ID databases on social media platforms and how do they make them vulnerable to data breaches? 
+        
+        \item What are the techniques that are being used to bypass the current ID verification methods, and what vulnerabilities do these techniques exploit? 
+        
+    \end{itemize}
+    
+    
+    
+    The second set explores the solution domain to evaluate the technical viability and limitations of the proposed alternative:
+    
+    \begin{itemize} 
+        
+        \item How do Zero-Knowledge Proofs verify a user’s identity without exposing personal data? 
+        
+        \item What are the key differences in data management between ZKPs and traditional ID uploads? 
+        
+        \item To what extent does implementing ZKP architecture reduce the potential risk of a data breach compared to ID verification? 
+        
+        \item What are the technical challenges and cons of using ZKP architecture in social media platforms? 
+        
+        \item In what ways could the different implementations of ZKP architecture be exploited to bypass adult verification? 
+        
+    \end{itemize}
+    
+    
+    
+    Ultimately, the objective of this project is to deliver a comprehensive technical framework that evaluates whether ZKPs can satisfy stringent EU regulations while eliminating the honeypot effect of centralized databases. To achieve this, the study outlines a comparative methodology consisting of a requirements analysis, a targeted literature review, and the development of a Proof of Concept (PoC) test setup. This PoC will simulate and compare the data management footprints, cryptographic security, and technical feasibility of both traditional ID upload APIs and ZKP architectures.
+    
+    
+    
+    \section{Framework}%
+    
+    \label{sec:framework}
+    
+    
+    
+    This chapter explores the theoretical background of the research by reviewing existing professional literature. First, the vulnerabilities and circumvention methods associated with current identity verification systems are analyzed. Subsequently, the cryptographic theory of ZKPs is introduced as a potential privacy-preserving alternative.
+    
+    
+    
+    \subsection{Vulnerabilities of Traditional ID Verification}
+    
+    Traditional age verification systems rely heavily on users submitting official government documents, such as passports or driver's licenses. This practice exposes a vast array of sensitive personal data to third-party providers, including full names, physical addresses, exact dates of birth, and biometric data extracted from document photographs \autocite{Alajaji2025, AdGuard2026}. Centralizing this immutable data creates massive digital honeypots, transforming corporate databases into high-value targets for cybercriminals \autocite{Newmark2026}. 
+    
+    The severity of this vulnerability is demonstrated by recent security incidents, such as the breach of third-party verification services that exposed the government-issued IDs of approximately 70,000 Discord users to malicious actors \autocite{Alajaji2025, EFF2025ZKP}. Furthermore, retaining such extensive and sensitive data directly conflicts with the GDPR's principle of data minimization, a risk underscored by recent regulatory fines imposed on age verification providers for the excessive retention of biometric templates \autocite{AdGuard2026}.
+    
+    
+    
+    \subsection{Circumvention Techniques}
+    
+    Despite the severe privacy risks they introduce, current verification methods suffer from significant effectiveness flaws. Literature indicates that minors frequently employ various techniques to bypass age-gating mechanisms \autocite{Wodo2025}. A common circumvention tactic involves the use of Virtual Private Networks (VPNs) to spoof geographical locations and access age-restricted content via non-compliant international servers \autocite{Wodo2025, Alajaji2025}. 
+    
+    
+    
+    Additionally, document-based and facial estimation systems are highly susceptible to "proxy verification" or "friendly fraud," where minors use the identity documents or live facial scans of older siblings, parents, or guardians to bypass the checks \autocite{Wodo2025}. Advanced technological exploits also pose a growing threat. Researchers have documented instances of AI-generated deepfakes, manipulated identity documents, and 3D virtual avatars being used to successfully defeat liveness detection and facial age estimation algorithms \autocite{Wodo2025}.
+    
+    
+    
+    \subsection{The Theory of ZKPs}
+    
+    To address the dual challenges of data exposure and system evasion, cryptographic alternatives such as ZKPs have been proposed. ZKPs are cryptographic protocols that enable one party (the prover) to mathematically convince another party (the verifier) that a specific statement is true, without disclosing any additional information beyond the validity of the statement itself \autocite{Bootsma2025, EUCommission2025}. 
+    
+    
+    
+    In the context of age verification, a user can possess a digital credential issued by a trusted authority that contains their exact date of birth. Utilizing ZKPs, the user's device can generate a cryptographic proof demonstrating that their age satisfies a specific threshold (e.g., ``I am over 18'') \autocite{Bootsma2025, Wodo2025}. The verifier receives this proof and can mathematically confirm its authenticity and validity, but learns absolutely nothing about the user's exact age, name, or document number \autocite{EUCommission2025, Kesim2025}. By shifting the paradigm from sharing raw identity data to sharing verifiable attributes via selective disclosure, ZKPs eliminate the need for platforms to collect and store sensitive personal information, effectively neutralizing the honeypot effect \autocite{Bootsma2025}.
+    
+    
+    
+    
+    
+    \section{Implementation}%
+    
+    \label{sec:implementation}
+    
+    This chapter outlines the methodology used to systematically compare ZKP architectures against traditional document-based age verification. To determine the technical viability of ZKPs for social media platforms, the research employs a comparative study methodology. This approach transitions from a requirements analysis to the development and evaluation of a simulated PoC.
+    
+    
+    
+    \subsection{Requirements Analysis and Framework Selection}
+    
+    Before developing the test environment, a requirements analysis will establish the necessary cryptographic security, user experience, and GDPR compliance baselines required for social media age verification. A short-list of available ZKP frameworks will be compiled and evaluated based on these requirements. Options such as zk-SNARKs, BBS+ signatures, and ECDSA-based anonymous credentials \autocite{EUCommission2025, Kesim2025} will be analyzed to select the most suitable architecture for integration into a standard web or mobile application environment.
+    
+    
+    
+    \subsection{Proof of Concept (PoC) Development}
+    
+    The core practical component of this research consists of developing a dual-track PoC to simulate user age verification requests under controlled conditions. 
+    
+    
+    
+    The first track will simulate a traditional document-based verification flow. This baseline API will replicate current industry standards where raw personal data, such as a user's date of birth and identity document image, is transmitted, processed, and stored on a central server \autocite{Signzy2026}. 
+    
+    
+    
+    The second track will implement the selected ZKP architecture. In this scenario, the PoC will simulate a decentralized identity wallet that generates a cryptographic proof of age (e.g., proving the statement ``age > 16'') on the client side. The social media server will act as the verifier, mathematically confirming the proof without ever receiving or processing the underlying identity document \autocite{Bootsma2025, Wodo2025}.
+    
+    
+    
+    \subsection{Experimental Setup and Evaluation Criteria}
+    
+    To answer the solution-oriented sub-questions regarding data management, technical challenges, and bypass vulnerabilities, the PoC will be subjected to a series of comparative experiments. 
+    
+    
+    
+    First, to evaluate the reduction in data breach risks, the system will log the exact data footprint transmitted to and stored by the verifier's server in both tracks. This will provide measurable data on how ZKPs alter data management and enforce data minimization \autocite{Wodo2025}. 
+    
+    
+    
+    Second, performance metrics will be gathered to identify the technical challenges and practical disadvantages of ZKPs. The experiments will measure computational overhead, proof generation time on the client device, and verification latency on the server, as these factors directly impact user experience and platform scalability \autocite{EUCommission2025, EFF2025ZKP}. 
+    
+    
+    
+    Finally, a threat modeling exercise will be conducted on the ZKP implementation. While ZKPs prevent server-side data leaks, the analysis will evaluate potential new bypass exploits on the client side, such as device sharing or credential theft, to determine if ZKP architectures introduce alternative vulnerabilities for underage users \autocite{Lueks2026, EFF2025ZKP}.
+    
+    
+    
+    \section{Results}%
+    
+    \label{sec:results}
+    
+    
+    
+    Because this research proposal outlines a study that has not yet been executed, this chapter details the expected raw data and metrics that will be generated by the PoC. The results will objectively capture the technical and privacy-related differences between the ZKP architecture and the traditional document-based verification track. The data will be reported through quantitative metrics and structured logs, without interpretation.
+    
+    
+    
+    \subsection{Data Management and Exposure Footprints}
+    
+    The execution of the dual-track PoC will yield precise measurements regarding the amount of sensitive data transmitted and stored during a verification request. The system will log the payload sizes (in bytes) of the verification requests. For the traditional track, this will include the transmission of raw document imagery and extracted attributes (e.g., date of birth and document numbers). For the ZKP track, the logs will capture the size of the cryptographic proof (e.g., the boolean output and cryptographic hashes). This data will be visualised in a comparative bar chart to illustrate the exact difference in server-side data accumulation.
+    
+    
+    
+    \subsection{Performance and Latency Metrics}
+    
+    To map the technical feasibility of both systems, the PoC will generate quantitative performance metrics. The testing environment will record the time required for a complete verification cycle. The expected output will consist of the following variables, measured over a sample size of 1,000 simulated requests:
+    
+    \begin{itemize}
+        
+        \item \textbf{Client-side processing time (ms):} The time required for the user's device to capture an ID document versus the time required to generate a zero-knowledge proof.
+        
+        \item \textbf{Server-side verification latency (ms):} The computational time required by the verifier's server to process the API request and return a decision.
+        
+        \item \textbf{Bandwidth consumption (KB):} The total size of the network payload transmitted between the client and the server.
+        
+    \end{itemize}
+    
+    
+    
+    The raw performance data will be aggregated and presented in tabular format. Table \ref{tab:expected_metrics} provides an example of how these aggregated metrics will be structured to allow for objective comparison.
+    
+    
+    
+    % The table* environment makes the table span across both columns natively.
+    
+    \begin{table*}[t]
+        
+        \centering
+        
+        \begin{tabular}{|l|c|c|}
+            
+            \hline
+            
+            \textbf{Metric (Average per 1,000 runs)} & \textbf{Traditional ID Upload} & \textbf{ZKP Architecture} \\ \hline
+            
+            Payload Size (KB) & [Expected Data] & [Expected Data] \\ \hline
+            
+            Client-Side Processing (ms) & [Expected Data] & [Expected Data] \\ \hline
+            
+            Server-Side Latency (ms) & [Expected Data] & [Expected Data] \\ \hline
+            
+            CPU Overhead (Verifier) (\%) & [Expected Data] & [Expected Data] \\ \hline
+            
+        \end{tabular}
+        
+        \caption{Placeholder: Comparative performance metrics of the PoC verification tracks.}
+        
+        \label{tab:expected_metrics}
+        
+    \end{table*}
+    
+    
+    
+    \subsection{Threat Modeling Outcomes}
+    
+    The final set of expected results will consist of the security logs generated during the threat modeling phase. The system will record the success and failure rates of simulated bypass attempts (such as presentation attacks for the traditional track and device/credential sharing for the ZKP track). These results will be documented in a boolean matrix, objectively stating whether an architecture successfully prevented a specific attack vector during the controlled experiments.
+    
+    
+    
+    \section{Analysis}%
+    
+    \label{sec:analysis}
+    
+    This chapter outlines the evaluation framework that will be used to interpret the quantitative data and security logs generated by the PoC. The analysis will systematically compare the ZKP architecture against traditional document-based verification based on three core criteria: data breach risk reduction, technical feasibility, and bypass resistance. By evaluating the expected results through these lenses, the remaining sub-questions of the solution domain will be answered.
+    
+    
+    
+    \subsection{Data Management and Breach Risk Reduction}
+    
+    To determine the extent to which ZKP architectures reduce data breach risks, the analysis will evaluate the data management footprints logged during the experiments. The expected payload and storage metrics from the traditional ID upload track will be compared against the cryptographic proof sizes of the ZKP track. 
+    
+    
+    
+    This comparison will explicitly determine whether ZKP effectively eliminates the need for centralized identity storage, which \textcite{Bootsma2025} identify as the primary catalyst for the ``honeypot effect.'' The analysis will assess whether the ZKP implementation successfully enforces the GDPR's data minimization principles by ensuring the verifier's server only receives and processes boolean assertions (e.g., ``age > 16'') rather than raw personal identifiable information \autocite{Wodo2025}. 
+ 
+    \subsection{Technical Feasibility and Disadvantages}
+    
+    While ZKPs offer substantial privacy benefits, their implementation introduces specific technical challenges. The analysis will interpret the expected performance metrics (client-side processing time, server-side latency, and bandwidth consumption) to map the practical cons of ZKP architectures \autocite{Lueks2026}. 
+  
+    The data will be evaluated to determine if the computational overhead required to generate and verify zero-knowledge proofs creates an unacceptable barrier to user experience or platform scalability compared to traditional API requests. Furthermore, the analysis will consider the infrastructural requirements, noting that ZKP solutions often require complex public key infrastructures and digital wallets that may exclude users without access to advanced mobile hardware \autocite{EFF2025ZKP, EUCommission2025}.
 
-\tableofcontents
-
-\section{Introduction}%
-\label{sec:introduction}
-
-De laatste jaren is veel onderzoek gewijd aan de uitrol van het Internet; helaas hebben slechts weinigen onderzoek gedaan naar de simulatie van wide area netwerken~\autocite{Hykes2013}. In deze position paper ont\-krach\-ten we het begrip van het World Wide Web. De notie dat theoretici meewerken aan de verbetering van gerandomiseerde algoritmen wordt meestal belangrijk geacht. De analyse van lambda calculus zou de verfijning van het World Wide Web enorm vergroten.
-
-\begin{align*}
-  f(x) &= x^2\\
-  \mathbf{ g(x) } &= \frac{1}{x}\\
-   F(x)  &= \int^a_b \frac{1}{3}x^3\\
-\end{align*}
-
-Wij bevestigen dat het veel aangeprezen certificeerbare algoritme voor de constructie van online algoritmen door Lee en Davis loopt in $\Theta(n^2)$ tijd. Het lijkt op het eerste gezicht pervers maar het viel in met onze verwachtingen. Bestaande lossless en coöperatieve heuristieken gebruiken superblocks om DHCP in te zetten. Maar, twee eigenschappen maken deze oplossing perfect: YnowHip simuleert alomtegenwoordige symmetrieën, en bovendien biedt YnowHip gerepliceerde symmetrieën. Deze combinatie van eigenschappen is nog niet verbeterd in eerder werk.
-
-\section{Framework}%
-\label{sec:framework}
-
-Veronderstel dat er een multimodale theorie bestaat, zodat we gemakkelijk write-ahead logging kunnen bestuderen. Elke typische evaluatie van Scheme zal duidelijk vereisen dat SMP's alomtegenwoordig, psychoakoestisch, en mobiel kunnen worden gemaakt; onze benadering is niet anders. Ondanks de resultaten van P. U. Williams, kunnen we bevestigen dat webbrowsers event-driven kunnen worden gemaakt, homogeen, en heterogeen kunnen worden gemaakt. Daarom is het ontwerp dat YnowHip gebruikt stevig verankerd in de realiteit. Ondanks het feit dat het volledig een bevestigd doel is, heeft het een ruime historische precedent.
-
-\section{Implementation}%
-\label{sec:implementation}
-
-Hoewel veel sceptici zeiden dat het niet mogelijk was (met name Wilson en Moore), beschrijven wij een volledig werkende versie van ons systeem. Bovendien, was het nodig om de instructie snelheid die door ons raamwerk wordt gebruikt te beperken tot 30 pagina's. De met de hand geoptimaliseerde compiler bevat ongeveer 403 instructies van ML. Onze oplossing bestaat uit een client-side bibliotheek, een verzameling shell scripts, en een eigen database. Evenzo bevat de verzameling van shell scripts bevat ongeveer 52 instructies van~\textcite{LewisFowler2014}. Over het geheel genomen, voegt YnowHip slechts bescheiden overhead en complexiteit toe aan eerdere adaptieve systemen.
-
-\section{Results}%
-\label{sec:results}
-
-Onze prestatie-analyse\footnote{Zie \url{https://github.com/some/repo}} vormt op zichzelf al een waardevolle onderzoeksbijdrage. Onze algemene evaluatiestrategie tracht drie hypotheses te bewijzen: (1) dat hashtabellen niet langer het systeemontwerp beïnvloeden; (2) dat de partitietabel niet langer de prestaties beïnvloedt; en tenslotte (3) dat de interrupt rate constant is ge\-ble\-ven over opeenvolgende generaties van Commodore 64's. Onze evaluatie is erop gericht deze punten duidelijk te maken:
-
-\begin{verbatim}
-  public class Greeter {
-    public static void main() {
-      System.out.println("Hello world!");
-    }
-  }
-\end{verbatim}
-
-\section{Analysis}%
-\label{sec:analysis}
-
-Is het mogelijk te rechtvaardigen dat we in sectie \ref{sec:results} weinig aandacht hebben besteed aan onze uitvoering en experimentele opzet? Ja, maar alleen in theorie. Met deze overwegingen in het achterhoofd, hebben we vier nieuwe experimenten uitgevoerd: (1) we gemeten de ruimte op de optische schijf als functie van de ROM verwerkingscapaciteit op een IBM PC Junior; (2) we maten de snelheid van de harde schijf als functie van het flash-geheugen geheugenruimte op een UNIVAC; (3) we vroegen (en antwoordden) wat er zou gebeuren als computationeel stochastische glasvezelkabels zouden worden gebruikt in plaats van checksums; en (4) we hebben YnowHip getest op onze eigen desktop machines, met bijzondere aandacht voor de ruimte op de tapedrive. We hebben de resultaten van enkele eerdere experimenten, met name toen we tape drive doorvoer als functie van de snelheid van het bandstation op een Motorola bag telefoon.
-
-Nu de climaxanalyse van experimenten (3) en (4) die hierboven. Hoewel het nooit een uitgebreid doel is, is het afgeleid van bekende resultaten. Foutbalken zijn weggelaten, omdat de meeste van onze datapunten vielen buiten de 84 standaardafwijkingen van de waargenomen gemiddelden vielen. Gaussian elektromagnetische storingen in ons systeem veroorzaakten onstabiele experimentele resultaten. Wij hadden nauwelijks voorzien hoe nauwkeurig onze resultaten in deze fase van de evaluatiemethode.
-
-\section{Conclusions}%
-\label{sec:conclusions}
-
-In dit artikel hebben we aangetoond dat Sche\-me en write-ahead logging zelden incompatibel zijn. Om dit te bereiken voor kernels, beschreven we een nieuw raamwerk voor de constructie van virtuele machines. Ons systeem kan met succes vele compilers tegelijk aansturen. De visualisatie van e-commerce is belangrijker dan ooit, en onze methodologie helpt eindgebruikers precies dat te doen.
-
+    \subsection{Bypass Vulnerabilities and Threat Resistance}
+    
+    Finally, the results of the threat modeling exercise will be analyzed to identify ways in which ZKP architectures could be exploited by underage users. While traditional document verification is highly vulnerable to deepfakes and physical document forgery \autocite{Wodo2025}, ZKP systems present different threat vectors.
+ 
+    The analysis will interpret the security logs to assess the susceptibility of ZKPs to client-side bypass techniques. As highlighted by \textcite{Lueks2026}, offline credential-based architectures are uniquely vulnerable to the ``adult by proxy'' exploit, where a minor simply uses an authenticated adult's device or shared credential wallet to generate a valid cryptographic proof. The analysis will weigh these new vulnerabilities against the mitigated server-side risks to provide a holistic evaluation of the ZKP ecosystem \autocite{EFF2025ZKP}.
+    
+    \section{Conclusions}%
+    
+    \label{sec:conclusions}
+    
+    The impending EU age verification mandates pose a significant privacy dilemma, as traditional document-based verification methods force social media platforms to centralize sensitive personal data. This practice directly conflicts with data minimization principles and creates high-value targets for catastrophic data breaches. This bachelor's project was proposed to answer the central question: \textit{How does implementing Zero-Knowledge Proofs for age verification compare to traditional ID uploads when mitigating the risk of major data breaches for social media platforms?}
+    
+    To answer this question, this study outlined a comparative methodology culminating in a dual-track PoC. By systematically evaluating both architectures, the project will map the exact differences in data management footprints, cryptographic security, and technical feasibility. The analysis of the generated metrics will determine the extent to which ZKPs can effectively eliminate the honeypot effect associated with centralized identity storage.
+    
+    The final deliverable of this research will be a comprehensive technical framework and advisory report tailored for social media platforms. This deliverable will provide an evidence-based verdict on whether ZKPs are a viable, privacy-preserving alternative to standard ID verification. Furthermore, to ensure a balanced and objective evaluation, the conclusion of the study will explicitly outline the practical limitations of ZKP architectures, such as computational overhead, integration complexity, and susceptibility to client-side bypass exploits like proxy verification. 
+    
+    Finally, the project will provide concrete suggestions for future research. As digital identity ecosystems continue to evolve, future studies could investigate the seamless integration of ZKP age verification protocols with the forthcoming EU Digital Identity Wallets, ensuring that platforms can achieve both absolute regulatory compliance and fundamental data privacy.
+    
 \printbibliography[heading=bibintoc]
-
 \end{document}
