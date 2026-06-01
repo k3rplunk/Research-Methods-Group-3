@@ -1,0 +1,335 @@
+%==============================================================================
+% Research Methods - Group assignment - pitch
+%==============================================================================
+
+\documentclass[aspectratio=169]{beamer}
+
+% You can increase the font size a bit with the option `14pt'
+
+%==============================================================================
+% Preamble
+%==============================================================================
+
+%---------- Layout ------------------------------------------------------------
+
+\usetheme{hogent}
+
+% Choose the background color theme, hgwhite (white background) or hgblack
+% (black background)
+\usecolortheme{hgwhite}
+
+%---------- Packages ----------------------------------------------------------
+% You can add additional packages if you need them.
+
+\usepackage[english]{babel}      % Dutch language support (remove or change to
+% "english" for English)
+
+\usepackage{booktabs}          % Better looking tables
+\usepackage{multirow,multicol} % Merge table cells
+\usepackage{eurosym}           % Euro symbool
+\usepackage{tikz}              
+
+%---------- Metadata ----------------------------------------------------------
+
+\title{Zero-Knowledge Proofs vs Traditional ID Uploads}
+\subtitle{Comparative study about Age Verification in Social Media}
+\author{Anabel Villalba Pascual}
+\date{\today}
+
+%==============================================================================
+% Presentation content
+%==============================================================================
+
+\begin{document}
+    
+    {
+        % An image cut out in the shape of a letter is a typical design element in
+        % HOGENT's corporate identity. You can replace the image (in this case
+        % "blurred-background-cellphone-coffee-842554.jpg") and the letter (in this
+        % case "R") with your own choices. The image should be placed in the
+        % `graphics` folder of your project and can be a jpeg or png.
+        \setbeamertemplate{background}[imgletter]
+        {Ageverf.jpg}{Z}
+        
+        \begin{frame}
+            \maketitle
+        \end{frame}
+    }
+    
+    \begin{frame}
+    \frametitle{Index.}
+    
+    \begin{itemize}
+        \setlength{\itemsep}{1em}
+        \item[] \textbf{\large \textcolor{hgpink}{1.\ \ The Problem}}
+        \item[] \textbf{\large \textcolor{hgdarkgreen}{2.\ \ Towards The Solution: Zero-Knowledge Proofs}}
+        \item[] \textbf{\large \textcolor{hgpurple}{3.\ \ Methodology}}
+        \item[] \textbf{\large \textcolor{hgblue}{4.\ \ Expected Results \& Conclusion}}
+    \end{itemize}
+    
+    \end{frame}
+
+
+    
+    %---------- Slide The Problem ----------------------------------------------
+    
+    \section{\textcolor{hgpink}{The Problem}}
+    
+    \begin{frame}
+        \frametitle{EU deadline on Age Verification}
+        
+        \begin{columns}[c]
+            \column{.55\textwidth}
+            \begin{itemize}
+                \item \textbf{Digital Services Act (DSA)} requires age verification on social media by \textbf{end of 2026}
+                \item Honeypots of sensitive data in platforms that collect ID's, driver's licenses...
+                \item \textbf{70,000} Discord users had government-issued IDs stolen in a single breach
+            \end{itemize}
+            
+            \column{.45\textwidth}
+            \begin{center}
+                \begin{tikzpicture}
+                    % Central database "honeypot"
+                    \node[draw, fill=hgpink!30, rounded corners, minimum width=2.8cm, minimum height=1cm, font=\small\bfseries] (db) at (0,0) {Central DB};
+                    % Arrows from users
+                    \foreach \angle/\label in {135/Passport A, 90/Driving's license B, 45/Biometrics C} {
+                        \node[font=\scriptsize] (\label) at (\angle:2.2cm) {\label};
+                        \draw[->, thick, hgdarkgreen] (\label) -- (db);
+                    }
+                    % Attacker
+                    \node[font=\scriptsize\bfseries, text=hgpink] (att) at (270:2.2cm) {\textbf{Attacker}};
+                    \draw[->, very thick, hgpink] (db) -- (att);
+                    % Label
+                    \node[font=\tiny, text=hgblack] at (0,-1.2) {Perfect honeypot for};
+                \end{tikzpicture}
+            \end{center}
+        \end{columns}
+    \end{frame}
+    
+    %---------- Slide GDPR Conflict -------------------------------------------
+    
+\begin{frame}
+    \frametitle{ID verification conflicts with GDPR.}
+    \bigskip
+    \begin{columns}[c]
+        \column{.5\textwidth}
+        \textbf{\textcolor{hgpink}{What's on your ID:}}
+        \begin{itemize}
+            \item Full legal name
+            \item Physical address
+            \item Exact date of birth
+            \item Biometric photo data
+            \item Document numbers
+        \end{itemize}
+        
+        \bigskip
+        \textbf{\textcolor{hgdarkgreen}{What GDPR requires:}}
+        \begin{itemize}
+            \item \textit{Data minimization}
+            \item Collect only what is strictly necessary
+        \end{itemize}
+        
+        \column{.5\textwidth}
+        \vspace*{-2.5cm} 
+        \begin{center}
+            \begin{tikzpicture}
+
+                \node[draw, fill=hgpink!20, rounded corners, text width=3.2cm, align=center, font=\small] (col) at (-2,6) {Data collected by platform};
+                
+                \node[draw, fill=hgdarkgreen!20, rounded corners, text width=4cm, align=center, font=\small] (need) at (-2,4) {Data actually needed\\[4pt]\scriptsize \textbf{``Is this user over 18?''}};
+                
+                \draw[->, very thick, hgorange] (col) -- node[right, font=\scriptsize\bfseries, text=hgorange] {vs} (need);
+                
+                \draw[->, very thick, hgpink] (col.west) -- ++(-3,0);
+            \end{tikzpicture}
+        \end{center}
+    \end{columns}
+\end{frame}
+
+ 
+%---------- Slide ZKP Solution ---------------------------------------------
+
+\section{\textcolor{hgdarkgreen}{Towards The Solution: Zero-Knowledge Proofs}}
+     {
+    \setbeamertemplate{background}[imgletter]
+    {cyber-security-8460433}{Z}
+    
+    \begin{frame}
+        
+        {\huge \textbf{How do Zero-Knowledge Proofs compare to traditional ID uploads when mitigating the risk of major data breaches for social media platforms?}}
+        
+    \end{frame}
+}
+
+\begin{frame}
+    \frametitle{ZKPs prove a fact without revealing any data behind it.}
+    
+    \begin{center}
+        \begin{tikzpicture}[scale=1.05]
+            
+            % ---- Node styles ----
+            % Step 1: Trusted Authority
+            \node[draw, fill=hggrey!20, rounded corners=6pt,
+            minimum width=2.6cm, minimum height=1.1cm,
+            align=center, font=\small\bfseries] (auth) at (-4.5, 0)
+            {Trusted\\Authority};
+            \node[font=\tiny, text=hggrey, align=center] at (-4.5, -1.0)
+            {government eID};
+            
+            % Step 2: User Device
+            \node[draw, fill=hgdarkgreen!25, rounded corners=6pt,
+            minimum width=2.6cm, minimum height=1.1cm,
+            align=center, font=\small\bfseries] (device) at (0, 0)
+            {User Device};
+            % Credential badge above device
+            \node[draw, fill=hgdarkgreen!10, rounded corners=3pt,
+            font=\tiny, align=center, text=hgdarkgreen,
+            inner sep=3pt] (cred) at (0, 1.35)
+            {digital credential\\DOB: 14/03/2001};
+            \draw[->, thin, hgdarkgreen!60] (cred.south) -- (device.north);
+            
+            % Step 3: Social Media Server
+            \node[draw, fill=hgblue!20, rounded corners=6pt,
+            minimum width=2.6cm, minimum height=1.1cm,
+            align=center, font=\small\bfseries] (server) at (4.5, 0)
+            {Social Media\\Server};
+            
+            % ---- Arrow 1: Authority → Device (issues credential) ----
+            \draw[->, very thick, hggrey!80] (auth) --
+            node[above, font=\tiny, text=hgdarkgrey] {issues credential}
+            (device);
+            
+            % ---- Arrow 2: Device → Server (ZK proof only) ----
+            \draw[->, very thick, hgdarkgreen] (device) --
+            node[above, font=\scriptsize\bfseries, text=hgdarkgreen] {ZK Proof}
+            (server);
+            
+            % ---- What the server receives (green tick box) ----
+            \node[draw, fill=hgdarkgreen!15, rounded corners=3pt,
+            font=\small\bfseries, text=hgdarkgreen,
+            inner sep=5pt] at (4.5, -1.15)
+            {\ age $>$ 18 = \texttt{true}};
+            
+            % ---- What the server does NOT receive (red cross box) ----
+            \node[draw, fill=hgpink!15, rounded corners=3pt,
+            font=\tiny, text=hgpink, align=center,
+            inner sep=4pt] at (0, -2.15)
+            {\textbf{Server can't access:} name · DOB · address · document};
+            
+            % ---- On-device proof label ----
+            \node[font=\tiny, text=hgdarkgreen!80, align=center] at (0, -1.0)
+            {proof generated\\on device};
+            
+        \end{tikzpicture}
+    \end{center}
+    
+\end{frame}
+
+    
+    %---------- Slide Methodology ----------------------------------------------
+    
+
+    {
+        \setbeamertemplate{background}[imgletter]
+        {methods-and-methodology-800x-445}{M}
+        
+        \begin{frame}
+            
+            {\huge \textbf{\textcolor{hgpurple}{Methodology}}}
+            
+        \end{frame}
+    }
+    
+    \begin{frame}
+        \frametitle{Dual-track Proof of Concept to compare both systems.}
+        
+        \begin{columns}[c]
+            \column{.48\textwidth}
+            \textbf{\textcolor{hgpink}{Track 1: Traditional ID Upload}}
+            \begin{itemize}
+                \item Simulate industry-standard API
+                \item Raw ID document transmitted to server
+                \item Data stored centrally
+
+            \end{itemize}
+            
+            \column{.48\textwidth}
+            \textbf{\textcolor{hgdarkgreen}{Track 2: ZKP Architecture}}
+            \begin{itemize}
+                \item Frameworks: zk-SNARKs, ECDSA credentials...
+                \item Proof generated \textit{on-device}
+                \item Server receives only boolean assertion = No identity data retained
+
+            \end{itemize}
+        \end{columns}
+        
+
+        
+        \begin{center}
+            \textbf{Measured across 1,000 simulated requests:}\\[4pt]
+            \textcolor{hgorange}{\textbf{Data Footprint}}  $\cdot$ 
+            \textcolor{hgpurple}{\textbf{Performance}}  $\cdot$ 
+            \textcolor{hgblue}{\textbf{Threat Resistance}}
+        \end{center}
+    \end{frame}
+    
+    %---------- Slide Expected Results -----------------------------------------
+    
+  {
+      \setbeamertemplate{background}[imgletter]
+      {Lupa.na.encyklopedii}{E}
+      
+      \begin{frame}
+          
+          {\huge \textbf{\textcolor{hgwhite}{Expected Results}}}
+          
+      \end{frame}
+  }
+    
+    \begin{frame}
+        \frametitle{What we expect to find.}
+        
+        \begin{table}
+            \small
+            \begin{tabular}{p{3.8cm} p{3.6cm} p{3.6cm}}
+                
+                & \textbf{Traditional ID Upload} & \textbf{ZKP Architecture} \\
+                \midrule
+                Payload size                    & High (doc image + metadata)   & Minimal (crypto hash) \\
+                \midrule
+                Data stored         & Full PII                      & Boolean only (\texttt{age > 16}) \\
+                \midrule
+                GDPR compliance                 & \textcolor{hgpink}{\textbf{At risk}} & \textcolor{hgdarkgreen}{\textbf{Aligned}} \\
+                \midrule
+                Deepfake / forgery risk         & \textcolor{hgpink}{\textbf{High}}    & \textcolor{hgdarkgreen}{\textbf{Eliminated}} \\
+                \midrule
+                Proxy / device sharing          & Medium                        & \textcolor{hgorange}{\textbf{New vector}} \\
+                \midrule
+                Computational overhead          & Low                           & \textcolor{hgorange}{\textbf{Higher}} \\
+                
+            \end{tabular}
+            \caption{Expected comparative evaluation}
+        \end{table}
+    \end{frame}
+    
+    %---------- Slide 7: Conclusion -----------------------------------------------
+    
+    \section{\textcolor{hgblue}{Conclusion}}
+    
+    {
+        \setbeamertemplate{background}[imgletter]%
+        {identity-self.jpg}{W}
+        
+        \begin{frame}
+            
+            {\huge \textbf{ZKPs can verify \textit{who you are} without storing \textit{what you are.}}}
+            
+           
+           
+            
+        \end{frame}
+    }
+    
+ 
+    
+\end{document}
